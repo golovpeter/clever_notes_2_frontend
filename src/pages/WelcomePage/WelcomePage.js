@@ -1,10 +1,10 @@
 import React from 'react'
-import Header from "../components/Header/Header";
 import {Button, Row} from "antd";
-import ImageCarousel from "../components/Carousel/Carousel";
-import InfCard from "../components/InfCard/InfCard";
-import PageFooter from "../components/Footer/Footer";
-import 'antd/dist/antd.css';
+import Header from "../../components/Header/Header";
+import ImageCarousel from "../../components/Carousel/Carousel";
+import InfCard from "../../components/InfCard/InfCard";
+import PageFooter from "../../components/Footer/Footer";
+import 'antd/dist/antd.min.css'
 import './WelcomePage.css'
 
 class WelcomePage extends React.Component {

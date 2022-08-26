@@ -19,7 +19,7 @@ class InfCard extends React.Component {
                         <Col span={12}>
                             <Card title={<p align="center" style={{fontSize: "25px"}}>Have notes everywhere</p>}
                                   style={{width: "70%"}}>
-                                <p align="center">Cloud - system of notes allows you to use notes from different
+                                <p>Cloud - system of notes allows you to use notes from different
                                     devices.</p>
                             </Card>
                         </Col>
