@@ -18,7 +18,7 @@ class RegisterPage extends React.Component {
     }
 
     signUp(values) {
-        fetch("http://localhost:8080/sign-up", {
+        fetch("/sign-up", {
             method: "POST",
             body: JSON.stringify({"username": values.username, "password": values.password})
         }).then(response => response.json())
