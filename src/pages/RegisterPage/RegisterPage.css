@@ -1,0 +1,20 @@
+.ant-form {
+    border: 1px solid #cccccc;
+    padding: 30px !important;
+    border-radius: 45px;
+    background-color: #f3f3f3;
+}
+
+.ant-input-affix-wrapper > input.ant-input {
+    font-size: 18px;
+    font-family: "JetBrains Mono", serif;
+}
+
+.errorMessage {
+    color: red;
+    margin-left: 30px;
+}
+
+.successMessage {
+    color: green;
+}
