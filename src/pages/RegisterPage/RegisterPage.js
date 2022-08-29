@@ -18,7 +18,7 @@ class RegisterPage extends React.Component {
     }
 
     signUp(values) {
-        fetch("/sign-up", {
+        fetch("http://localhost:8080/sign-up", {
             method: "POST",
             body: JSON.stringify({"username": values.username, "password": values.password})
         }).then(response => response.json())
@@ -29,7 +29,6 @@ class RegisterPage extends React.Component {
                         handleMessage: response.errorMessage,
                         showError: true
                     });
-                    console.log(this.state.showError);
                 } else if (response.errorCode === "0") {
                     this.setState({
                         errorCode: response.errorCode,
@@ -58,7 +57,7 @@ class RegisterPage extends React.Component {
                     <Form
 
                         name="normal_login"
-                        className="login-form"
+                        className="register-form"
                         initialValues={{
                             remember: true,
                         }}
