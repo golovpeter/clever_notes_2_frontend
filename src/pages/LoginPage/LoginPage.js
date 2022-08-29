@@ -16,7 +16,7 @@ class LoginPage extends React.Component {
     }
 
     signIn(values) {
-        fetch("http://localhost:8080/sign-in", {
+        fetch("/sign-in", {
             method: "POST",
             body: JSON.stringify(values)
         }).then(response => response.json())
