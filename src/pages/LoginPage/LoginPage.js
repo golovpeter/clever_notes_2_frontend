@@ -28,9 +28,9 @@ class LoginPage extends React.Component {
                         showError: true
                     });
                 } else {
-                    localStorage.setItem("accessToken", response.access_token);
-                    localStorage.setItem("refreshToken", response.refresh_token);
-                    window.location.href='/notes';
+                    localStorage.setItem("access_token", response.access_token);
+                    localStorage.setItem("refresh_token", response.refresh_token);
+                    window.location.href = '/notes';
                 }
             })
     };
