@@ -13,6 +13,10 @@ class LoginPage extends React.Component {
       handleMessage: undefined,
       showError: false,
     };
+
+    if (localStorage.getItem("access_token") !== undefined) {
+      window.location.href = "/notes";
+    }
   }
 
   //TODO: обработать все ошибки с бэка

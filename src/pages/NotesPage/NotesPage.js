@@ -1,5 +1,5 @@
 import React from "react";
-import { Row } from "antd";
+import { Button, Row } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import Header from "../../components/Header/Header";
 import NoteCard from "../../components/NoteCard/NoteCard";
@@ -49,7 +49,7 @@ class NotesPage extends React.Component {
                   }
 
                   if (response["response"] !== null) {
-                    this.setState({ notes: response.response });
+                    this.setState({ notes: response.notes });
                   } else {
                     window.location.href = "/login";
                   }
@@ -65,7 +65,7 @@ class NotesPage extends React.Component {
         }
 
         if (response["response"] !== null) {
-          this.setState({ notes: response.response });
+          this.setState({ notes: response.notes });
         } else {
           window.location.href = "/login";
         }
@@ -95,6 +95,9 @@ class NotesPage extends React.Component {
               shapeButton="round"
               iconButton={<PlusOutlined />}
             />,
+            <Button type="primary" shape="round" key={2}>
+              Log out
+            </Button>,
           ]}
         />
         <div className={"noteCard"}>

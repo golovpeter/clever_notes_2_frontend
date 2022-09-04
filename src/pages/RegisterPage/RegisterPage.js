@@ -14,6 +14,10 @@ class RegisterPage extends React.Component {
       showError: false,
     };
     this.formRef = React.createRef();
+
+    if (localStorage.getItem("access_token") !== undefined) {
+      window.location.href = "/notes";
+    }
   }
 
   signUp(values) {
