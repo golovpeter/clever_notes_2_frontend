@@ -1,21 +1,21 @@
 .register-form {
-    border: 1px solid #cccccc;
-    padding: 30px !important;
-    border-radius: 45px;
-    background-color: #f3f3f3;
+  border: 1px solid #cccccc;
+  padding: 30px !important;
+  border-radius: 45px;
+  background-color: #f3f3f3;
 }
 
 .ant-input-affix-wrapper > input.ant-input {
-    font-size: 18px;
-    font-family: "JetBrains Mono", serif;
+  font-size: 18px;
+  font-family: "JetBrains Mono", serif;
 }
 
 .errorMessage {
-    color: red;
-    margin-left: 0;
-    text-align: center;
+  color: red;
+  margin-left: 0;
+  text-align: center;
 }
 
 .successMessage {
-    color: green;
+  color: green;
 }

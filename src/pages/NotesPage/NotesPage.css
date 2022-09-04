@@ -1,0 +1,13 @@
+.noteCard {
+  margin: 20px 40px 20px !important;
+}
+
+.ant-input[disabled] {
+  color: black;
+  background-color: white;
+}
+
+.ant-btn-round {
+  font-family: "JetBrains Mono", serif;
+  height: 43px;
+}

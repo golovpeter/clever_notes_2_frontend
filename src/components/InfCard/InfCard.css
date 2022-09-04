@@ -1,14 +1,14 @@
-.ant-card-head{
-    width: auto;
-    border: 1px solid #9A9797AD;
+.ant-card-head {
+  width: auto;
+  border: 1px solid #9a9797ad;
 }
 
 .ant-card-body {
-    width: auto;
-    border: 1px solid #9A9797AD;
+  width: auto;
+  border: 1px solid #9a9797ad;
 }
 
 p {
-    font-family: "JetBrains Mono", serif;
-    font-size: 18px;
+  font-family: "JetBrains Mono", serif;
+  font-size: 18px;
 }
