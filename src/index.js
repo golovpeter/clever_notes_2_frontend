@@ -10,13 +10,13 @@ import NotesPage from "./pages/NotesPage/NotesPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<WelcomePage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/register" element={<RegisterPage />} />
-      <Route path="/notes" element={<NotesPage />} />
-      <Route path="*" element={<NoMatchPage />} />
-    </Routes>
-  </BrowserRouter>
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<WelcomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/notes" element={<NotesPage />} />
+            <Route path="*" element={<NoMatchPage />} />
+        </Routes>
+    </BrowserRouter>
 );
