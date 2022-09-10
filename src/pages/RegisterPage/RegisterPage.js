@@ -15,7 +15,7 @@ class RegisterPage extends React.Component {
         };
         this.formRef = React.createRef();
 
-        if (localStorage.getItem("access_token") !== undefined) {
+        if (localStorage.getItem("access_token") !== null) {
             window.location.href = "/notes";
         }
     }
@@ -36,10 +36,12 @@ class RegisterPage extends React.Component {
                         handleMessage: response.errorMessage,
                         showError: true,
                     });
+
+                    console.error(this.state.handleMessage);
                 } else if (response.errorCode === "0") {
                     this.setState({
                         errorCode: response.errorCode,
-                        handleMessage: response.message,
+                        handleMessage: response.errorMessage,
                         showError: true,
                     });
                 }

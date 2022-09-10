@@ -45,7 +45,10 @@ class AddNoteModal extends React.Component {
                 <Modal
                     title={this.props.title}
                     visible={this.state.visible}
-                    onOk={this.handleOk.bind(this)}
+                    onOk={() => {
+                        this.handleOk();
+                        this.props.addNote(this.state.caption, this.state.note);
+                    }}
                     okText="Save"
                     okButtonProps={{ shape: "round" }}
                     cancelButtonProps={{ shape: "round", type: "default" }}

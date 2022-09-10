@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Row} from "antd";
+import { Button, Row } from "antd";
 import Header from "../../components/Header/Header";
 import ImageCarousel from "../../components/Carousel/Carousel";
 import InfCard from "../../components/InfCard/InfCard";
@@ -11,7 +11,7 @@ class WelcomePage extends React.Component {
     constructor(props) {
         super(props);
 
-        if (localStorage.getItem("access_token") !== undefined) {
+        if (localStorage.getItem("access_token") !== null) {
             window.location.href = "/notes";
         }
     }
@@ -43,12 +43,12 @@ class WelcomePage extends React.Component {
                     type="flex"
                     justify="center"
                     align="middle"
-                    style={{paddingTop: "50px"}}
+                    style={{ paddingTop: "50px" }}
                 >
-                    <ImageCarousel/>
+                    <ImageCarousel />
                 </Row>
-                <InfCard/>
-                <PageFooter/>
+                <InfCard />
+                <PageFooter />
             </div>
         );
     }

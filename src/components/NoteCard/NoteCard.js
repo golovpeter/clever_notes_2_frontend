@@ -19,6 +19,9 @@ class NoteCard extends React.Component {
                         shape="circle"
                         key={2}
                         icon={<DeleteOutlined />}
+                        onClick={() => {
+                            this.props.deleteNote();
+                        }}
                     ></Button>,
                 ]}
                 style={{ width: 355 }}
