@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Card, Form, Input } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import "./NoteCard.css";
 
 class NoteCard extends React.Component {
     render() {
@@ -14,6 +15,7 @@ class NoteCard extends React.Component {
                         key={1}
                         icon={<EditOutlined />}
                         style={{ marginRight: "10px" }}
+                        onClick={() => {}}
                     ></Button>,
                     <Button
                         shape="circle"
@@ -29,7 +31,7 @@ class NoteCard extends React.Component {
                 <Form>
                     <Form.Item>
                         <Input.TextArea
-                            autoSize={{ minRows: 10, maxRows: 10 }}
+                            autoSize={{ minRows: 12, maxRows: 12 }}
                             defaultValue={this.props.note}
                             disabled={true}
                         />

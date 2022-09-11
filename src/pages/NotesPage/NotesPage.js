@@ -148,6 +148,61 @@ class NotesPage extends React.Component {
         })
             .then((response) => response.json())
             .then((response) => {
+                if (response.errorCode === "1") {
+                    this.updateTokens()
+                        .then((response) => response.json())
+                        .then((response) => {
+                            localStorage.setItem(
+                                "access_token",
+                                response.access_token
+                            );
+                            localStorage.setItem(
+                                "refresh_token",
+                                response.refresh_token
+                            );
+
+                            fetch("http://localhost:8080/add-note", {
+                                method: "POST",
+                                headers: {
+                                    Authorization:
+                                        "Bearer " +
+                                        localStorage.getItem("access_token"),
+                                },
+                                body: JSON.stringify({
+                                    note_caption: noteCaption,
+                                    note: note,
+                                }),
+                            })
+                                .then((response) => response.json())
+                                .then((response) => {
+                                    if (response.errorCode !== undefined) {
+                                        console.error(
+                                            "add note error" +
+                                                response.errorMessage
+                                        );
+                                        return;
+                                    }
+
+                                    if (response["note_id"] !== null) {
+                                        this.setState({
+                                            notes: [
+                                                ...this.state.notes,
+                                                {
+                                                    note_id: response.note_id,
+                                                    note: note,
+                                                    note_caption: noteCaption,
+                                                },
+                                            ],
+                                        });
+                                    } else {
+                                        window.location.href = "/login";
+                                    }
+                                });
+                        });
+
+                    return;
+                }
+
                 if (
                     response.errorCode !== undefined &&
                     response.errorCode !== "0"
@@ -156,16 +211,20 @@ class NotesPage extends React.Component {
                     return;
                 }
 
-                this.setState({
-                    notes: [
-                        ...this.state.notes,
-                        {
-                            note_id: response.note_id,
-                            note: note,
-                            note_caption: noteCaption,
-                        },
-                    ],
-                });
+                if (response["note_id"] !== null) {
+                    this.setState({
+                        notes: [
+                            ...this.state.notes,
+                            {
+                                note_id: response.note_id,
+                                note: note,
+                                note_caption: noteCaption,
+                            },
+                        ],
+                    });
+                } else {
+                    window.location.href = "/login";
+                }
             });
     }
 
@@ -181,6 +240,66 @@ class NotesPage extends React.Component {
         })
             .then((response) => response.json())
             .then((response) => {
+                if (response.errorCode === "1") {
+                    this.updateTokens()
+                        .then((response) => response.json())
+                        .then((response) => {
+                            localStorage.setItem(
+                                "access_token",
+                                response.access_token
+                            );
+                            localStorage.setItem(
+                                "refresh_token",
+                                response.refresh_token
+                            );
+
+                            fetch("http://localhost:8080/delete-note", {
+                                method: "POST",
+                                headers: {
+                                    Authorization:
+                                        "Bearer " +
+                                        localStorage.getItem("access_token"),
+                                },
+                                body: JSON.stringify({
+                                    note_id: parseInt(noteId),
+                                }),
+                            })
+                                .then((response) => response.json())
+                                .then((response) => {
+                                    if (response.errorCode !== "0") {
+                                        console.error(
+                                            "delete note error" +
+                                                response.errorMessage
+                                        );
+                                        return;
+                                    }
+
+                                    if (response.errorCode === "0") {
+                                        let noteStateId = getNoteStateIndex(
+                                            noteId,
+                                            this.state.notes
+                                        );
+                                        let filteredState =
+                                            this.state.notes.filter(function (
+                                                value,
+                                                index,
+                                                array
+                                            ) {
+                                                return index !== noteStateId;
+                                            });
+
+                                        this.setState({
+                                            notes: filteredState,
+                                        });
+                                    } else {
+                                        window.location.href = "/login";
+                                    }
+                                });
+                        });
+
+                    return;
+                }
+
                 if (
                     response.errorCode !== undefined &&
                     response.errorCode !== "0"
@@ -189,19 +308,25 @@ class NotesPage extends React.Component {
                     return;
                 }
 
-                let noteStateId = getNoteStateIndex(noteId, this.state.notes);
+                if (response["note_id"] !== null) {
+                    let noteStateId = getNoteStateIndex(
+                        noteId,
+                        this.state.notes
+                    );
+                    let filteredState = this.state.notes.filter(function (
+                        value,
+                        index,
+                        array
+                    ) {
+                        return index !== noteStateId;
+                    });
 
-                let filteredState = this.state.notes.filter(function (
-                    value,
-                    index,
-                    array
-                ) {
-                    return index !== noteStateId;
-                });
-
-                this.setState({
-                    notes: filteredState,
-                });
+                    this.setState({
+                        notes: filteredState,
+                    });
+                } else {
+                    window.location.href = "/login";
+                }
             });
     }
 
@@ -234,7 +359,7 @@ class NotesPage extends React.Component {
                         gutter={[15, 30]}
                         className={"board"}
                         style={{
-                            columnGap: "20px",
+                            columnGap: "15px",
                             rowGap: "20px",
                         }}
                     >
@@ -242,7 +367,16 @@ class NotesPage extends React.Component {
                             <NoteCard
                                 key={index}
                                 note={element["note"]}
-                                note_caption={element["note_caption"]}
+                                note_caption={
+                                    <b
+                                        style={{
+                                            fontSize: "18px",
+                                            fontFamily: "JetBrains Mono",
+                                        }}
+                                    >
+                                        {element["note_caption"]}
+                                    </b>
+                                }
                                 deleteNote={() => {
                                     this.deleteNote(element["note_id"]);
                                 }}
@@ -278,7 +412,7 @@ class NotesPage extends React.Component {
                                         color: "#bfbfbf",
                                     }}
                                 >
-                                    Здесь будут ваши заметки
+                                    Here will be your notes
                                 </p>
                             </Row>
                         </>

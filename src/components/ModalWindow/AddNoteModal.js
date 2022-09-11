@@ -11,6 +11,8 @@ class AddNoteModal extends React.Component {
             caption: "",
             note: "",
         };
+
+        this.formRef = React.createRef();
     }
 
     showModal() {
@@ -45,6 +47,7 @@ class AddNoteModal extends React.Component {
                 <Modal
                     title={this.props.title}
                     visible={this.state.visible}
+                    destroyOnClose={true}
                     onOk={() => {
                         this.handleOk();
                         this.props.addNote(this.state.caption, this.state.note);
@@ -60,9 +63,9 @@ class AddNoteModal extends React.Component {
                         placeholder="Input note caption"
                         style={{ marginBottom: "15px" }}
                         className="input-area"
-                        onChange={(e) =>
-                            this.setState({ caption: e.target.value })
-                        }
+                        onChange={(e) => {
+                            this.setState({ caption: e.target.value });
+                        }}
                     />
                     <p style={{ marginBottom: 0 }}>Note</p>
                     <TextArea
