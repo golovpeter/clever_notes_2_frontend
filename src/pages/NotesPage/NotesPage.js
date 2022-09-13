@@ -3,7 +3,6 @@ import { Button, Row } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import Header from "../../components/Header/Header";
 import NoteCard from "../../components/NoteCard/NoteCard";
-import PageFooter from "../../components/Footer/Footer";
 import AddNoteModal from "../../components/ModalWindow/AddNoteModal";
 import "./NotesPage.css";
 
@@ -354,7 +353,7 @@ class NotesPage extends React.Component {
                         </Button>,
                     ]}
                 />
-                <div className={"noteCard"}>
+                <div className={"noteCard"} style={{paddingBottom: "20px"}}>
                     <Row
                         gutter={[15, 30]}
                         className={"board"}
@@ -365,7 +364,7 @@ class NotesPage extends React.Component {
                     >
                         {this.state.notes.map((element, index) => (
                             <NoteCard
-                                key={index}
+                                key={element["note_id"]}
                                 note={element["note"]}
                                 note_caption={
                                     <b
@@ -418,7 +417,6 @@ class NotesPage extends React.Component {
                         </>
                     ) : null}
                 </div>
-                <PageFooter />
             </>
         );
     }
