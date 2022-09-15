@@ -110,7 +110,8 @@ class NotesPage extends React.Component {
                 } else {
                     window.location.href = "/login";
                 }
-            }).catch(() => console.error("Failed to fetch, backend id disabled"));
+            })
+            .catch(() => console.error("Failed to fetch, backend id disabled"));
     }
 
     updateTokens() {
@@ -145,7 +146,8 @@ class NotesPage extends React.Component {
                 ) {
                     console.error("error occurred: " + response.errorMessage);
                 }
-            }).catch(() => console.error("Failed to fetch, backend id disabled"));
+            })
+            .catch(() => console.error("Failed to fetch, backend id disabled"));
     }
 
     addNote(noteCaption, note) {
@@ -238,7 +240,8 @@ class NotesPage extends React.Component {
                 } else {
                     window.location.href = "/login";
                 }
-            }).catch(() => console.error("Failed to fetch, backend id disabled"));
+            })
+            .catch(() => console.error("Failed to fetch, backend id disabled"));
     }
 
     deleteNote(noteId) {
@@ -341,7 +344,8 @@ class NotesPage extends React.Component {
                 } else {
                     window.location.href = "/login";
                 }
-            }).catch(() => console.error("Failed to fetch, backend id disabled"));
+            })
+            .catch(() => console.error("Failed to fetch, backend id disabled"));
     }
 
     editNote(noteId, newCaption, newNote) {
@@ -446,7 +450,8 @@ class NotesPage extends React.Component {
                 } else {
                     window.location.href = "/login";
                 }
-            }).catch(() => console.error("Failed to fetch, backend id disabled"));
+            })
+            .catch(() => console.error("Failed to fetch, backend id disabled"));
     }
 
     render() {

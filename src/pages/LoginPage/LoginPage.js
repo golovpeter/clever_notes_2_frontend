@@ -40,7 +40,8 @@ class LoginPage extends React.Component {
                     );
                     window.location.href = "/notes";
                 }
-            }).catch(() => console.error("Failed to fetch, backend id disabled"));
+            })
+            .catch(() => console.error("Failed to fetch, backend id disabled"));
     }
 
     render() {

@@ -45,7 +45,8 @@ class RegisterPage extends React.Component {
                         showError: true,
                     });
                 }
-            }).catch(() => console.error("Failed to fetch, backend id disabled"));
+            })
+            .catch(() => console.error("Failed to fetch, backend id disabled"));
     }
 
     onReset = () => {
