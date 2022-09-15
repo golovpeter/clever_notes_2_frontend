@@ -1,10 +1,11 @@
 import React from "react";
 import { Button, Row } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import Header from "../../components/Header/Header";
 import NoteCard from "../../components/NoteCard/NoteCard";
 import AddNoteModal from "../../components/ModalWindow/AddNoteModal";
 import "./NotesPage.css";
+import EditNoteModal from "../../components/EditNoteModal/EditNoteModal";
 
 function getNoteStateIndex(element, array) {
     for (let i = 0; i < array.length; i++) {
@@ -13,6 +14,10 @@ function getNoteStateIndex(element, array) {
         }
     }
 }
+
+const generateKey = (pre) => {
+    return `${pre}_${new Date().getTime()}`;
+};
 
 class NotesPage extends React.Component {
     constructor(props) {
@@ -23,6 +28,7 @@ class NotesPage extends React.Component {
 
         this.addNote = this.addNote.bind(this);
         this.deleteNote = this.deleteNote.bind(this);
+        this.editNote = this.editNote.bind(this);
 
         if (localStorage.getItem("access_token") === null) {
             window.location.href = "/";
@@ -71,6 +77,10 @@ class NotesPage extends React.Component {
                                     }
 
                                     if (response["notes"] !== null) {
+                                        let notes = response.notes;
+                                        notes.sort((a, b) =>
+                                            a.note_id > b.note_id ? 1 : -1
+                                        );
                                         this.setState({
                                             notes: response.notes,
                                         });
@@ -92,11 +102,15 @@ class NotesPage extends React.Component {
                 }
 
                 if (response["response"] !== null) {
-                    this.setState({ notes: response.notes });
+                    let notes = response.notes;
+                    notes.sort((a, b) => (a.note_id > b.note_id ? 1 : -1));
+                    this.setState({
+                        notes: response.notes,
+                    });
                 } else {
                     window.location.href = "/login";
                 }
-            });
+            }).catch(() => console.error("Failed to fetch, backend id disabled"));
     }
 
     updateTokens() {
@@ -131,7 +145,7 @@ class NotesPage extends React.Component {
                 ) {
                     console.error("error occurred: " + response.errorMessage);
                 }
-            });
+            }).catch(() => console.error("Failed to fetch, backend id disabled"));
     }
 
     addNote(noteCaption, note) {
@@ -224,7 +238,7 @@ class NotesPage extends React.Component {
                 } else {
                     window.location.href = "/login";
                 }
-            });
+            }).catch(() => console.error("Failed to fetch, backend id disabled"));
     }
 
     deleteNote(noteId) {
@@ -312,6 +326,7 @@ class NotesPage extends React.Component {
                         noteId,
                         this.state.notes
                     );
+
                     let filteredState = this.state.notes.filter(function (
                         value,
                         index,
@@ -326,7 +341,112 @@ class NotesPage extends React.Component {
                 } else {
                     window.location.href = "/login";
                 }
-            });
+            }).catch(() => console.error("Failed to fetch, backend id disabled"));
+    }
+
+    editNote(noteId, newCaption, newNote) {
+        fetch("http://localhost:8080/update-note", {
+            method: "POST",
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("access_token"),
+            },
+            body: JSON.stringify({
+                note_id: parseInt(noteId),
+                new_note_caption: newCaption,
+                new_note: newNote,
+            }),
+        })
+            .then((response) => response.json())
+            .then((response) => {
+                if (response.errorCode === "1") {
+                    this.updateTokens()
+                        .then((response) => response.json())
+                        .then((response) => {
+                            localStorage.setItem(
+                                "access_token",
+                                response.access_token
+                            );
+                            localStorage.setItem(
+                                "refresh_token",
+                                response.refresh_token
+                            );
+
+                            fetch("http://localhost:8080/update-note", {
+                                method: "POST",
+                                headers: {
+                                    Authorization:
+                                        "Bearer " +
+                                        localStorage.getItem("access_token"),
+                                },
+                                body: JSON.stringify({
+                                    note_id: parseInt(noteId),
+                                    new_note_caption: newCaption,
+                                    new_note: newNote,
+                                }),
+                            })
+                                .then((response) => response.json())
+                                .then((response) => {
+                                    if (response.errorCode === "0") {
+                                        let noteStateId = getNoteStateIndex(
+                                            noteId,
+                                            this.state.notes
+                                        );
+
+                                        newNote = {
+                                            note_id: noteId,
+                                            note: newNote,
+                                            note_caption: newCaption,
+                                        };
+
+                                        let newNotes = this.state.notes;
+                                        newNotes[noteStateId] = newNote;
+                                        newNotes.sort((a, b) =>
+                                            a.note_id > b.note_id ? 1 : -1
+                                        );
+
+                                        this.setState({
+                                            notes: newNotes,
+                                        });
+                                    } else {
+                                        window.location.href = "/login";
+                                    }
+                                });
+                        });
+
+                    return;
+                }
+
+                if (
+                    response.errorCode !== undefined &&
+                    response.errorCode !== "0"
+                ) {
+                    console.error("error occurred: " + response.errorMessage);
+                    return;
+                }
+
+                if (response["note_id"] !== null) {
+                    let noteStateId = getNoteStateIndex(
+                        noteId,
+                        this.state.notes
+                    );
+
+                    newNote = {
+                        note_id: noteId,
+                        note: newNote,
+                        note_caption: newCaption,
+                    };
+
+                    let newNotes = this.state.notes;
+                    newNotes[noteStateId] = newNote;
+                    newNotes.sort((a, b) => (a.note_id > b.note_id ? 1 : -1));
+
+                    this.setState({
+                        notes: newNotes,
+                    });
+                } else {
+                    window.location.href = "/login";
+                }
+            }).catch(() => console.error("Failed to fetch, backend id disabled"));
     }
 
     render() {
@@ -337,23 +457,23 @@ class NotesPage extends React.Component {
                         <AddNoteModal
                             title="Add new note!"
                             textButton={"Add note"}
-                            key={1}
                             typeButton="primary"
                             shapeButton="round"
                             iconButton={<PlusOutlined />}
                             addNote={this.addNote}
+                            key={generateKey("addNoteModal")}
                         />,
                         <Button
                             type="primary"
                             shape="round"
-                            key={2}
+                            key={generateKey("logOutKey")}
                             onClick={() => this.logOut()}
                         >
                             Log out
                         </Button>,
                     ]}
                 />
-                <div className={"noteCard"} style={{paddingBottom: "20px"}}>
+                <div className={"noteCard"} style={{ paddingBottom: "20px" }}>
                     <Row
                         gutter={[15, 30]}
                         className={"board"}
@@ -364,7 +484,7 @@ class NotesPage extends React.Component {
                     >
                         {this.state.notes.map((element, index) => (
                             <NoteCard
-                                key={element["note_id"]}
+                                key={generateKey("note") + element["note_id"]}
                                 note={element["note"]}
                                 note_caption={
                                     <b
@@ -379,6 +499,21 @@ class NotesPage extends React.Component {
                                 deleteNote={() => {
                                     this.deleteNote(element["note_id"]);
                                 }}
+                                editNote={
+                                    <EditNoteModal
+                                        typeButton="default"
+                                        shapeButton="circle"
+                                        iconButton={<EditOutlined />}
+                                        key={
+                                            element["note_id"] +
+                                            element["note_caption"]
+                                        }
+                                        caption={element["note_caption"]}
+                                        note={element["note"]}
+                                        editNote={this.editNote}
+                                        noteId={element["note_id"]}
+                                    />
+                                }
                             />
                         ))}
                     </Row>

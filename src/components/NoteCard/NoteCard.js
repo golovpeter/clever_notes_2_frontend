@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Card, Form, Input } from "antd";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 import "./NoteCard.css";
 
 class NoteCard extends React.Component {
@@ -10,13 +10,7 @@ class NoteCard extends React.Component {
                 title={this.props.note_caption}
                 className={"note-card"}
                 extra={[
-                    <Button
-                        shape="circle"
-                        key={1}
-                        icon={<EditOutlined />}
-                        style={{ marginRight: "10px" }}
-                        onClick={() => {}}
-                    ></Button>,
+                    <span key={1}>{this.props.editNote}</span>,
                     <Button
                         shape="circle"
                         key={2}
@@ -24,6 +18,7 @@ class NoteCard extends React.Component {
                         onClick={() => {
                             this.props.deleteNote();
                         }}
+                        style={{ marginLeft: "5px" }}
                     ></Button>,
                 ]}
                 style={{ width: 355 }}

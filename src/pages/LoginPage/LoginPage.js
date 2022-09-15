@@ -19,7 +19,6 @@ class LoginPage extends React.Component {
         }
     }
 
-    //TODO: обработать все ошибки с бэка
     signIn(values) {
         fetch("http://localhost:8080/sign-in", {
             method: "POST",
@@ -41,7 +40,7 @@ class LoginPage extends React.Component {
                     );
                     window.location.href = "/notes";
                 }
-            });
+            }).catch(() => console.error("Failed to fetch, backend id disabled"));
     }
 
     render() {
