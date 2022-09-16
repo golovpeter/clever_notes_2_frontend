@@ -49,6 +49,13 @@ class NotesPage extends React.Component {
                     this.updateTokens()
                         .then((response) => response.json())
                         .then((response) => {
+                            if (response.errorCode === "1") {
+                                localStorage.removeItem("access_token");
+                                localStorage.removeItem("refresh_token");
+                                window.location.href = "/login";
+                                return;
+                            }
+
                             localStorage.setItem(
                                 "access_token",
                                 response.access_token
@@ -108,6 +115,8 @@ class NotesPage extends React.Component {
                         notes: response.notes,
                     });
                 } else {
+                    localStorage.removeItem("access_token");
+                    localStorage.removeItem("refresh_token");
                     window.location.href = "/login";
                 }
             })
@@ -167,6 +176,13 @@ class NotesPage extends React.Component {
                     this.updateTokens()
                         .then((response) => response.json())
                         .then((response) => {
+                            if (response.errorCode === "1") {
+                                localStorage.removeItem("access_token");
+                                localStorage.removeItem("refresh_token");
+                                window.location.href = "/login";
+                                return;
+                            }
+
                             localStorage.setItem(
                                 "access_token",
                                 response.access_token
@@ -210,6 +226,10 @@ class NotesPage extends React.Component {
                                             ],
                                         });
                                     } else {
+                                        localStorage.removeItem("access_token");
+                                        localStorage.removeItem(
+                                            "refresh_token"
+                                        );
                                         window.location.href = "/login";
                                     }
                                 });
@@ -238,6 +258,8 @@ class NotesPage extends React.Component {
                         ],
                     });
                 } else {
+                    localStorage.removeItem("access_token");
+                    localStorage.removeItem("refresh_token");
                     window.location.href = "/login";
                 }
             })
@@ -260,6 +282,14 @@ class NotesPage extends React.Component {
                     this.updateTokens()
                         .then((response) => response.json())
                         .then((response) => {
+
+                            if (response.errorCode === "1") {
+                                localStorage.removeItem("access_token");
+                                localStorage.removeItem("refresh_token");
+                                window.location.href = "/login";
+                                return;
+                            }
+
                             localStorage.setItem(
                                 "access_token",
                                 response.access_token
@@ -308,6 +338,10 @@ class NotesPage extends React.Component {
                                             notes: filteredState,
                                         });
                                     } else {
+                                        localStorage.removeItem("access_token");
+                                        localStorage.removeItem(
+                                            "refresh_token"
+                                        );
                                         window.location.href = "/login";
                                     }
                                 });
@@ -366,6 +400,14 @@ class NotesPage extends React.Component {
                     this.updateTokens()
                         .then((response) => response.json())
                         .then((response) => {
+
+                            if (response.errorCode === "1") {
+                                localStorage.removeItem("access_token");
+                                localStorage.removeItem("refresh_token");
+                                window.location.href = "/login";
+                                return;
+                            }
+
                             localStorage.setItem(
                                 "access_token",
                                 response.access_token
@@ -412,6 +454,10 @@ class NotesPage extends React.Component {
                                             notes: newNotes,
                                         });
                                     } else {
+                                        localStorage.removeItem("access_token");
+                                        localStorage.removeItem(
+                                            "refresh_token"
+                                        );
                                         window.location.href = "/login";
                                     }
                                 });
@@ -448,6 +494,8 @@ class NotesPage extends React.Component {
                         notes: newNotes,
                     });
                 } else {
+                    localStorage.removeItem("access_token");
+                    localStorage.removeItem("refresh_token");
                     window.location.href = "/login";
                 }
             })
