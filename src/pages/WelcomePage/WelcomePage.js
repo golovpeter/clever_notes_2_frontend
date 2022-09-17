@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Row } from "antd";
+import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import ImageCarousel from "../../components/Carousel/Carousel";
 import InfCard from "../../components/InfCard/InfCard";
@@ -21,22 +22,16 @@ class WelcomePage extends React.Component {
             <div className="welcome-page">
                 <Header
                     buttons={[
-                        <Button
-                            key="2"
-                            href="login"
-                            type="primary"
-                            shape="round"
-                        >
-                            Sign In
-                        </Button>,
-                        <Button
-                            key="1"
-                            href="register"
-                            type="primary"
-                            shape="round"
-                        >
-                            Sign Up
-                        </Button>,
+                        <Link to="login">
+                            <Button key="1" type="primary" shape="round">
+                                Sign In
+                            </Button>
+                        </Link>,
+                        <Link to="register">
+                            <Button key="2" type="primary" shape="round">
+                                Sign Up
+                            </Button>
+                        </Link>,
                     ]}
                 />
                 <Row
