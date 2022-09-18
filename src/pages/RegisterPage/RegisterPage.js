@@ -4,6 +4,7 @@ import { Button, Form, Input, Row } from "antd";
 import Header from "../../components/Header/Header";
 import PageFooter from "../../components/Footer/Footer";
 import "./RegisterPage.css";
+import { Link } from "react-router-dom";
 
 class RegisterPage extends React.Component {
     constructor(props) {
@@ -58,14 +59,11 @@ class RegisterPage extends React.Component {
             <>
                 <Header
                     buttons={[
-                        <Button
-                            key="2"
-                            href="login"
-                            type="primary"
-                            shape="round"
-                        >
-                            Sign In
-                        </Button>,
+                        <Link to="/login">
+                            <Button key="2" type="primary" shape="round">
+                                Sign In
+                            </Button>
+                        </Link>,
                     ]}
                 />
                 <div className="container"></div>

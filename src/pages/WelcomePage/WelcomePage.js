@@ -22,13 +22,13 @@ class WelcomePage extends React.Component {
             <div className="welcome-page">
                 <Header
                     buttons={[
-                        <Link to="login">
+                        <Link to="/login" key={"2"}>
                             <Button key="1" type="primary" shape="round">
                                 Sign In
                             </Button>
                         </Link>,
-                        <Link to="register">
-                            <Button key="2" type="primary" shape="round">
+                        <Link to="/register" key={"4"}>
+                            <Button key="3" type="primary" shape="round">
                                 Sign Up
                             </Button>
                         </Link>,

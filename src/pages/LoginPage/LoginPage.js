@@ -4,6 +4,7 @@ import { Button, Form, Input, Row } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import PageFooter from "../../components/Footer/Footer";
 import "./LoginPage.css";
+import { Link } from "react-router-dom";
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -117,7 +118,10 @@ class LoginPage extends React.Component {
                             >
                                 Log in
                             </Button>
-                            Or <a href="/register">register now!</a>
+                            Or
+                            <Link to="/register">
+                                <span> register now!</span>
+                            </Link>
                         </Form.Item>
                     </Form>
                 </Row>
