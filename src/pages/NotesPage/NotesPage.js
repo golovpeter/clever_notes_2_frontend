@@ -37,7 +37,7 @@ class NotesPage extends React.Component {
 
     //TODO: сделать обработку истекшего рефреш токена
     componentDidMount() {
-        fetch("http://localhost:8080/get-all-notes", {
+        fetch("/get-all-notes", {
             method: "POST",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -65,7 +65,7 @@ class NotesPage extends React.Component {
                                 response.refresh_token
                             );
 
-                            fetch("http://localhost:8080/get-all-notes", {
+                            fetch("/get-all-notes", {
                                 method: "POST",
                                 headers: {
                                     Authorization:
@@ -124,7 +124,7 @@ class NotesPage extends React.Component {
     }
 
     updateTokens() {
-        return fetch("http://localhost:8080/update-token", {
+        return fetch("/update-token", {
             method: "POST",
             body: JSON.stringify({
                 access_token: localStorage.getItem("access_token"),
@@ -134,7 +134,7 @@ class NotesPage extends React.Component {
     }
 
     logOut() {
-        fetch("http://localhost:8080/log-out", {
+        fetch("/log-out", {
             method: "POST",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -160,7 +160,7 @@ class NotesPage extends React.Component {
     }
 
     addNote(noteCaption, note) {
-        fetch("http://localhost:8080/add-note", {
+        fetch("/add-note", {
             method: "POST",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -192,7 +192,7 @@ class NotesPage extends React.Component {
                                 response.refresh_token
                             );
 
-                            fetch("http://localhost:8080/add-note", {
+                            fetch("/add-note", {
                                 method: "POST",
                                 headers: {
                                     Authorization:
@@ -267,7 +267,7 @@ class NotesPage extends React.Component {
     }
 
     deleteNote(noteId) {
-        fetch("http://localhost:8080/delete-note", {
+        fetch("/delete-note", {
             method: "POST",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -282,7 +282,6 @@ class NotesPage extends React.Component {
                     this.updateTokens()
                         .then((response) => response.json())
                         .then((response) => {
-
                             if (response.errorCode === "1") {
                                 localStorage.removeItem("access_token");
                                 localStorage.removeItem("refresh_token");
@@ -299,7 +298,7 @@ class NotesPage extends React.Component {
                                 response.refresh_token
                             );
 
-                            fetch("http://localhost:8080/delete-note", {
+                            fetch("/delete-note", {
                                 method: "POST",
                                 headers: {
                                     Authorization:
@@ -383,7 +382,7 @@ class NotesPage extends React.Component {
     }
 
     editNote(noteId, newCaption, newNote) {
-        fetch("http://localhost:8080/update-note", {
+        fetch("/update-note", {
             method: "POST",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("access_token"),
@@ -400,7 +399,6 @@ class NotesPage extends React.Component {
                     this.updateTokens()
                         .then((response) => response.json())
                         .then((response) => {
-
                             if (response.errorCode === "1") {
                                 localStorage.removeItem("access_token");
                                 localStorage.removeItem("refresh_token");
@@ -417,7 +415,7 @@ class NotesPage extends React.Component {
                                 response.refresh_token
                             );
 
-                            fetch("http://localhost:8080/update-note", {
+                            fetch("/update-note", {
                                 method: "POST",
                                 headers: {
                                     Authorization:
