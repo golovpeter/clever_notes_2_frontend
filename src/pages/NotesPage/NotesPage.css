@@ -11,3 +11,8 @@
     font-family: "JetBrains Mono", serif;
     height: 43px;
 }
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("../../fonts/JetBrainsMono-Light.ttf");
+}

@@ -7,6 +7,7 @@ import InfCard from "../../components/InfCard/InfCard";
 import PageFooter from "../../components/Footer/Footer";
 import "antd/dist/antd.min.css";
 import "./WelcomePage.css";
+import "../../fonts/JetBrainsMono-Light.ttf"
 
 class WelcomePage extends React.Component {
     constructor(props) {

@@ -22,3 +22,8 @@ a.ant-btn {
 .ant-divider-horizontal {
     margin: 0 0 0;
 }
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("../../fonts/JetBrainsMono-Light.ttf");
+}

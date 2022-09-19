@@ -1,13 +1,13 @@
 .footer {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin-bottom: 0;
-    width: 100%;
-    padding: 1rem;
     background-color: rgb(220, 220, 220);
     text-align: center;
+    border-top: 1px solid #E7E7E7;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
 }
 
 .footerText {
