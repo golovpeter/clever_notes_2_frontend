@@ -8,7 +8,7 @@ class Header extends React.Component {
                 <PageHeader
                     ghost={false}
                     title={
-                        <a href="/" style={{ color: "black" }}>
+                        <a href={this.props.href} style={{ color: "black" }}>
                             Clever Notes 2.0
                         </a>
                     }

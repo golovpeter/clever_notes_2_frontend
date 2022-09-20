@@ -504,6 +504,7 @@ class NotesPage extends React.Component {
         return (
             <>
                 <Header
+                    href="/notes"
                     buttons={[
                         <AddNoteModal
                             title="Add new note!"

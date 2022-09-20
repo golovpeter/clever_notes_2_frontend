@@ -58,6 +58,7 @@ class RegisterPage extends React.Component {
         return (
             <>
                 <Header
+                    href="/"
                     buttons={[
                         <Link to="/login">
                             <Button key="2" type="primary" shape="round">

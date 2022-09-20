@@ -22,6 +22,7 @@ class WelcomePage extends React.Component {
         return (
             <div className="welcome-page">
                 <Header
+                    href="/"
                     buttons={[
                         <Link to="/login" key={"2"}>
                             <Button key="1" type="primary" shape="round">

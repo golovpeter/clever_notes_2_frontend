@@ -48,7 +48,7 @@ class LoginPage extends React.Component {
     render() {
         return (
             <>
-                <Header />
+                <Header href="/"/>
                 <div className="container"></div>
                 <Row
                     type="flex"
