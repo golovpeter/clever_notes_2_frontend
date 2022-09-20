@@ -1,21 +1,3 @@
-## Available Scripts
+![image](https://user-images.githubusercontent.com/61946748/191031323-843af044-6e6d-4ed2-b4f1-2d7d88639a0b.png)
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![image](https://user-images.githubusercontent.com/61946748/191031441-1f52d18e-7d18-4a0d-b8f4-a2e8dba0eea1.png)
